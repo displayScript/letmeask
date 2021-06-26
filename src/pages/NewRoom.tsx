@@ -1,18 +1,15 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-// import { useContext } from 'react'
-import { useContext } from 'react';
-import { Link } from 'react-router-dom'
-import { AuthContext } from '../App';
+import { Link } from 'react-router-dom';
 import ilustrationImg from '../assets/images/illustration.svg';
 import logoImg from '../assets/images/logo.svg';
 
 import { Button } from '../components/Button';
+// import { useAuth } from '../hooks/useAuth';
 import '../styles/auth.scss';
 // import { TestContext } from '../App';
 
 export function NewRoom() {
 
-    const { user } = useContext(AuthContext)
+    // const { user } = useAuth
 
     // const { value, setvalue } = useContext(TestContext)
 
@@ -28,7 +25,6 @@ export function NewRoom() {
                 <div className="main-content">
 
                     <img src={logoImg} alt="letmeask" />
-                    <h1>{user?.name}</h1>
 
 
                     <h2>Criar uma nova sala</h2>
