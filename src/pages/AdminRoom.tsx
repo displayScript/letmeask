@@ -21,9 +21,8 @@ export function AdminRoom() {
 
     /*CONSTANTES*/
 
-    const { user } = useAuth();
+    // const { user } = useAuth();
     const params = useParams<RoomParams>();
-    const [newQuestion, setNewQuestion] = useState('');
     // const [questions, setQuestions] = useState<QuestionType[]>([])
     // const [title, setTitle] = useState('');
 
@@ -33,33 +32,33 @@ export function AdminRoom() {
 
     /** FUNÇÕES*/
 
-    async function handleSemdQuestion(event: FormEvent) {
-        event.preventDefault();
+    // async function handleSemdQuestion(event: FormEvent) {
+    //     event.preventDefault();
 
-        if (newQuestion.trim() === '') {
-            return;
-        }
+    //     if (newQuestion.trim() === '') {
+    //         return;
+    //     }
 
-        if (!user) {
-            throw new Error('You must be loggedin');
-        }
+    //     if (!user) {
+    //         throw new Error('You must be loggedin');
+    //     }
 
-        const question = {
+    //     const question = {
 
-            content: newQuestion,
-            author: {
-                name: user.name,
-                avatar: user.avatar,
-            },
+    //         content: newQuestion,
+    //         author: {
+    //             name: user.name,
+    //             avatar: user.avatar,
+    //         },
 
-            isHighlighted: false,
-            isAnswered: false
-        };
+    //         isHighlighted: false,
+    //         isAnswered: false
+    //     };
 
-        await database.ref(`rooms/${roomId}/questions`).push(question);
-        setNewQuestion('');
+    //     await database.ref(`rooms/${roomId}/questions`).push(question);
+    //     setNewQuestion('');
 
-    }
+    // }
 
     /*RETORNO*/
 
@@ -87,17 +86,16 @@ export function AdminRoom() {
 
                 </div>
 
-                <form onSubmit={handleSemdQuestion}>
-
+                <form>
                     <textarea
                         placeholder="O que você quer perguntar?"
-                        onChange={event => { setNewQuestion(event.target.value) }}
-                        value={newQuestion}
+                    // onChange={event => { setNewQuestion(event.target.value) }}
+                    // value={newQuestion}
                     />
 
                     <div className="form-footer">
 
-                        {user ? (
+                        {/* {user ? (
                             <div className="user-info">
                                 <img src={user.avatar} alt={user.name} />
                                 <span>{user.name}</span>
@@ -108,10 +106,10 @@ export function AdminRoom() {
 
                                 <span>Para enviar uma pergunta, <button>faça seu login</button>.</span>
                             )
-                        }
+                        } */}
 
 
-                        <Button type="submit" disabled={!user} >Enviar pergunta </Button>
+                        {/* <Button type="submit" disabled={!user} >Enviar pergunta </Button> */}
                     </div>
 
                 </form>
