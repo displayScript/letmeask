@@ -1,7 +1,11 @@
 import { useEffect } from 'react';
 import { FormEvent, useState } from 'react';
 import { useParams } from 'react-router-dom'
+
 import logoImg from '../assets/images/logo.svg';
+import deleteImg from '../assets/images/delete.svg';
+
+
 import { Button } from '../components/Button';
 import { Question } from '../components/Question/Index';
 import { RoomCode } from '../components/RoomCode';
@@ -28,37 +32,17 @@ export function AdminRoom() {
 
     const roomId = params.id;
     const { title, questions } = useRoom(roomId)
+    async function handleDeleteQuestion(questionId: string) {
+        if (window.confirm('Tem certeza que você deseja excluir esta pergunta ?')) {
+            await database.ref(`rooms/${roomId}/questions/${questionId}`).remove();
+
+        }
+    }
 
 
     /** FUNÇÕES*/
 
-    // async function handleSemdQuestion(event: FormEvent) {
-    //     event.preventDefault();
 
-    //     if (newQuestion.trim() === '') {
-    //         return;
-    //     }
-
-    //     if (!user) {
-    //         throw new Error('You must be loggedin');
-    //     }
-
-    //     const question = {
-
-    //         content: newQuestion,
-    //         author: {
-    //             name: user.name,
-    //             avatar: user.avatar,
-    //         },
-
-    //         isHighlighted: false,
-    //         isAnswered: false
-    //     };
-
-    //     await database.ref(`rooms/${roomId}/questions`).push(question);
-    //     setNewQuestion('');
-
-    // }
 
     /*RETORNO*/
 
@@ -122,7 +106,15 @@ export function AdminRoom() {
                                     key={question.id}
                                     content={question.content}
                                     author={question.author}
-                                />
+                                >
+                                    <button
+                                        type="button"
+                                        onClick={() => handleDeleteQuestion(question.id)
+                                        }
+                                    >
+                                        <img src={deleteImg} alt="" />
+                                    </button>
+                                </Question>
                             );
                         })
                     }
